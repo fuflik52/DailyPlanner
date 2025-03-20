@@ -2,7 +2,7 @@ export interface User {
   id: string;
   username: string;
   email: string;
-  avatarUrl?: string;
+  avatarUrl: string;
   preferences: {
     theme: 'light' | 'dark';
     language: string;
@@ -14,14 +14,15 @@ export interface User {
 export interface Task {
   id: string;
   title: string;
-  description?: string;
+  description: string;
   completed: boolean;
-  priority: 'low' | 'medium' | 'high';
-  dueDate?: Date;
-  tags: string[];
-  checklist: ChecklistItem[];
   createdAt: Date;
   updatedAt: Date;
+  dueDate: Date;
+  priority: 'low' | 'medium' | 'high';
+  status: 'active' | 'completed' | 'overdue';
+  tags: string[];
+  checklist: { id: string; text: string; completed: boolean }[];
 }
 
 export interface ChecklistItem {
@@ -45,7 +46,7 @@ export interface Event {
 export interface NavigationItem {
   name: string;
   href: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon: any;
   current: boolean;
 }
 
@@ -62,4 +63,9 @@ export interface Workspace {
   description: string;
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface Notification {
+  message: string;
+  type: 'success' | 'error' | 'info';
 }

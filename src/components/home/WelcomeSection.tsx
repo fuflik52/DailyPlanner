@@ -1,23 +1,16 @@
-import React from 'react';
 import { useStore } from '../../store';
 
 export function WelcomeSection() {
+  const theme = useStore((state) => state.theme);
   const user = useStore((state) => state.user);
-  const currentHour = new Date().getHours();
-
-  const getGreeting = () => {
-    if (currentHour < 12) return 'Доброе утро';
-    if (currentHour < 18) return 'Добрый день';
-    return 'Добрый вечер';
-  };
 
   return (
-    <div className="mb-8">
-      <h1 className="text-3xl font-bold text-gray-900">
-        {getGreeting()}, {user?.name}!
+    <div className={`p-6 rounded-lg ${theme === 'dark' ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+      <h1 className={`text-2xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+        Добро пожаловать, {user?.username || 'Гость'}!
       </h1>
-      <p className="mt-2 text-gray-600">
-        Вот что запланировано на сегодня.
+      <p className={`mt-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
+        Начните свой день с планирования задач и отслеживания прогресса.
       </p>
     </div>
   );

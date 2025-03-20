@@ -1,15 +1,19 @@
 import { WelcomeSection } from '../components/home/WelcomeSection';
 import { QuickActions } from '../components/home/QuickActions';
-import { TasksSummary } from '../components/home/TasksSummary';
+import { UserAvatar } from '../components/UserAvatar';
+import { TaskProgress } from '../components/home/TaskProgress';
 
 export function HomePage() {
   return (
-    <>
-      <WelcomeSection />
-      <QuickActions />
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <TasksSummary />
+    <div className="relative">
+      <div className="absolute top-0 left-0 p-4">
+        <UserAvatar />
       </div>
-    </>
+      <div className="pt-20 space-y-6">
+        <WelcomeSection />
+        <TaskProgress />
+        <QuickActions />
+      </div>
+    </div>
   );
 } 
